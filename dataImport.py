@@ -17,7 +17,7 @@ def openTXT(filename):
 
 # Write a function that will import a table from CSV file
 def thisIsMyOpenCSVFunctionItsReallyGreat(filename):
-    myDataFrame = pd.read_csv(filename)
+    myDataFrame = pd.read_csv(filename, sep=';')
     return myDataFrame
 
 # Define a class FileOpener
