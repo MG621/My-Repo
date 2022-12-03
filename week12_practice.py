@@ -1,7 +1,7 @@
 from matplotlib import pyplot as plt
 import numpy as np
 
-# Name:
+# Name: Mario A. Garza
 
 # Create a plot of the function y = 8 * sinc(x)
 # Include a proper title, axis labels, legend, and a grid
@@ -10,8 +10,16 @@ import numpy as np
 #       the same string as the color change ex: 'b--'
 
 ### Write here ###
-
-
+x = np.linspace(0,50)
+y = 8 * np.sinc(x)
+plt.plot(x, y, 'b-.', label='something')
+plt.title('Data')
+plt.xlabel('x-axis')
+plt.ylabel('y-axis')
+plt.legend()
+plt.grid()
+#plt.plot([2,4,6,8,10])
+plt.show()
 
 #--------------------------------------------------------------------------------------------------------
 
@@ -27,5 +35,15 @@ import numpy as np
 # multiple sinc() functions in the xz plane at different values of y
 
 ### Write Here ###
+
+ax = plt.figure().add_subplot(projection='3d')
+ax.plot(x, y, zs=0, zdir='y')
+'''for i in range(5):
+    np.linspace(0,50)
+    ax.plot(x, y, zs=0, zdir='y')
+    plt.plot(x, y, 'b-.', label='something')
+    No idea about this part'''
+plt.show()
+
 
 
