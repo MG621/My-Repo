@@ -83,3 +83,52 @@
 from math import ceil
 from math import floor
 from math import log
+
+print("What do you want to calculate?")
+print("Type 'd' for differetiated monthly payment amount,")
+print("Type 'n' for number of monthly payments,")
+print("Type 'a' for annuity monthly payment amount,")
+print("Type 'p' for loan principal: ")
+choice = input(">> ")
+if choice == 'n':
+    P = int(input("Enter the loan principal: "))
+    mPayment = int(input("Enter the monthly payment: "))
+    i = float(input("Enter the loan interest: "))
+    i = i/1200
+    n = ceil(log(mPayment / (mPayment - i * P), i + 1)) 
+    years = floor(n/12)
+    if years == 0:
+        print(f"It will take {n} months to repay the loan!")
+    else:
+        print(f"It will take {years} years and {int(n - (years*12))} months to repay the loan!")
+    print(f"Overpayment ${round((mPayment*n)-P,2)}")
+elif choice == 'a':
+    P = int(input("Enter the loan principal: "))
+    n = int(input("Enter the number of periods: "))
+    i = float(input("Enter the loan interest: "))
+    i = i/1200
+    sum = 0
+    for m in range(1,n+1):
+        A = P * i * pow(i + 1, n) / (pow(i + 1, n) - 1)
+        sum += A
+    print(f"Your monthly payment ${round(A,2)}!")
+    print(f"Overpayment ${round(sum-P,2)}")
+elif choice == 'd':
+    P = int(input("Enter the loan principal: "))
+    n = int(input("Enter the number of periods: "))
+    i = float(input("Enter the loan interest: "))
+    i = i/1200
+    sum = 0
+    for m in range(1,n+1):
+        Dm = P / n + i * (P - P * (m - 1) / n)
+        sum += Dm
+        print(f"For month #{m} payment is: ${round(Dm,2)}")
+    print(f"Overpayment ${round(sum-P,2)}")
+else:
+    A = float(input("Enter the annuity payment: "))
+    n = int(input("Enter the number of periods: "))
+    i = float(input("Enter the loan interest: "))
+    i = i/1200
+    P = A / (i * pow(1 + i, n) / (pow(1 + i, n) - 1))
+    print(f"Your loan principal: ${round(P,2)}!")
+    print(f"Overpayment ${round((A*n)-P,2)}")

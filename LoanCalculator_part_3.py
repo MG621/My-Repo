@@ -102,16 +102,27 @@ print("Type 'a' for annuity monthly payment amount,")
 print("Type 'p' for loan principal: ")
 choice = input(">> ")
 if choice == 'n':
-    principal = int(input("Enter the loan principal: "))
+    P = int(input("Enter the loan principal: "))
     mPayment = int(input("Enter the monthly payment: "))
-    interest = float(input("Enter the loan interest: "))
-    interest = interest/1200
-    n = ceil(log(mPayment / (mPayment - interest * principal), interest + 1))
-    months = n/12
-    years = floor(months/12)
-    print(f"It will take {years} years and {int(months - (years*12))} months to repay the loan!")
-    pass
+    i = float(input("Enter the loan interest: "))
+    i = i/1200
+    n = ceil(log(mPayment / (mPayment - i * P), i + 1)) 
+    years = floor(n/12)
+    if years == 0:
+        print(f"It will take {n} months to repay the loan!")
+    else:
+        print(f"It will take {years} years and {int(n - (years*12))} months to repay the loan!")
 elif choice == 'a':
-    pass
+    P = int(input("Enter the loan principal: "))
+    n = int(input("Enter the number of periods: "))
+    i = float(input("Enter the loan interest: "))
+    i = i/1200
+    A = P * i * pow(i + 1, n) / (pow(i + 1, n) - 1)
+    print(f"Your monthly payment ${round(A,2)}!")
 else:
-    pass
+    A = float(input("Enter the annuity payment: "))
+    n = int(input("Enter the number of periods: "))
+    i = float(input("Enter the loan interest: "))
+    i = i/1200
+    P = A / (i * pow(1 + i, n) / (pow(1 + i, n) - 1))
+    print(f"Your loan principal: ${round(P,2)}!")
